@@ -25,11 +25,13 @@ class OllamaGenerator:
         {topic}
 
         Guidelines:
-        - Write in a conversational, intriguing tone
-        - Use short, punchy sentences
-        - Include an interesting hook at the beginning
+        - Write in a direct, informative, and captivating style
+        - Use clear, impactful language
+        - Start with a compelling fact or insight
+        - Maintain a conversational yet authoritative tone
         - Aim for approximately 150-250 words
-        - End with a thought-provoking statement or question
+        - Conclude with a memorable takeaway or insight
+        - Avoid cinematic directions or staging instructions
         """
         
         response = ollama.generate(

@@ -30,8 +30,9 @@ paths:
 project_name: Instagram Reel Maker
 tts:
   language: en
-  model: tts_models/en/ljspeech/tacotron2-DDC
-  voice: default
+  model: tts_models/multilingual/multi-dataset/your_tts
+  voice: cloned
+  volume_boost: 1.3
 video:
   add_music: true
   duration: 60
