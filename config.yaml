@@ -1,0 +1,43 @@
+content:
+  tone:
+  - educational
+  - mysterious
+  - inspiring
+  - surprising
+  topics:
+  - science
+  - technology
+  - history
+  - nature
+  - space
+  - psychology
+ollama:
+  max_tokens: 500
+  model: llama3.2
+  preprompt: 'Generate an engaging, educational, and surprising topic for a 30-second
+    social media reel. Focus on science, technology, history, nature, space, or psychology.
+    Make it intriguing and shareable.
+
+    '
+  temperature: 0.7
+paths:
+  background_videos: j:\_____ PYTHON ______\FACELESS VIDEO\assets\background_videos
+  backgrounds: j:\_____ PYTHON ______\FACELESS VIDEO\assets\backgrounds
+  images: j:\_____ PYTHON ______\FACELESS VIDEO\assets\images
+  music: j:\_____ PYTHON ______\FACELESS VIDEO\assets\music
+  output: j:\_____ PYTHON ______\FACELESS VIDEO\output
+  reference_voice: j:\_____ PYTHON ______\FACELESS VIDEO\assets\voices\default_reference.wav
+project_name: Instagram Reel Maker
+tts:
+  language: en
+  model: tts_models/en/ljspeech/tacotron2-DDC
+  voice: default
+video:
+  add_music: true
+  duration: 60
+  fps: 60
+  min_clip_duration: 10
+  music_volume_reduction: 10
+  resolution:
+  - 1080
+  - 1920
