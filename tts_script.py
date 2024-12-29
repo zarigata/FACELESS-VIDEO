@@ -1,46 +1,55 @@
 import os
 import yaml
 import torch
-from TTS.utils.manage import ModelManager
-from TTS.utils.synthesizer import Synthesizer
+from TTS.api import TTS
+from pydub import AudioSegment
 
 class TTSConverter:
     def __init__(self, config_path='config.yaml'):
         with open(config_path, 'r') as file:
             self.config = yaml.safe_load(file)
         
-        self.setup_tts()
+        # Determine device
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        
+        # Initialize YourTTS for advanced voice cloning
+        self.tts = TTS(
+            model_name="tts_models/multilingual/multi-dataset/your_tts", 
+            progress_bar=False
+        ).to(self.device)
+        
+        # Reference voice for cloning
+        self.reference_voice = self.config['paths']['reference_voice']
     
-    def setup_tts(self):
-        """Initialize TTS model with voice reference"""
-        model_manager = ModelManager()
-        model_path, config_path, model_item = model_manager.download_model("tts_models/en/ljspeech/tacotron2-DDC")
+    def text_to_speech(self, text, output_path=None, volume_boost=1.3):
+        """
+        Convert text to speech with voice cloning and volume boost
         
-        reference_voice = self.config['paths']['reference_voice']
-        
-        # Use Tacotron2 for TTS
-        self.tts_synthesizer = Synthesizer(
-            model_path, 
-            config_path,
-            use_cuda=torch.cuda.is_available()
-        )
-        
-        self.reference_voice = reference_voice
-    
-    def text_to_speech(self, text, output_path=None):
-        """Convert text to speech and save as WAV"""
+        Args:
+            text (str): Text to convert to speech
+            output_path (str, optional): Path to save audio
+            volume_boost (float, optional): Multiplier to increase volume. Default is 30% boost.
+        """
         if output_path is None:
             output_path = os.path.join(
                 self.config['paths']['output'], 
                 'reel_audio.wav'
             )
         
-        # Generate speech using Tacotron2
-        wav = self.tts_synthesizer.tts(text)
+        # Generate speech using YourTTS with voice cloning
+        self.tts.tts_to_file(
+            text=text, 
+            speaker_wav=self.reference_voice, 
+            language="en", 
+            file_path=output_path
+        )
         
-        self.tts_synthesizer.save_wav(wav, output_path)
+        # Optional: Boost volume using pydub
+        audio = AudioSegment.from_wav(output_path)
+        boosted_audio = audio + (volume_boost - 1) * 6  # Adjust volume in decibels
+        boosted_audio.export(output_path, format="wav")
         
-        return output_path, len(wav) / self.tts_synthesizer.output_sample_rate
+        return output_path, len(audio) / 1000  # Duration in seconds
     
 def main():
     tts = TTSConverter()

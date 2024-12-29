@@ -37,7 +37,7 @@ video:
   duration: 60
   fps: 60
   min_clip_duration: 10
-  music_volume_reduction: 10
+  music_volume_reduction: 60
   resolution:
   - 1080
   - 1920
