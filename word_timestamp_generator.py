@@ -118,14 +118,14 @@ class WordTimestampGenerator:
                     subtitle_text, font, font_scale, thickness
                 )
                 text_x = (width - text_width) // 2
-                text_y = height - 50  # 50 pixels from bottom
+                text_y = height - 250  # 50 pixels from bottom
                 
                 # Draw text outline (black)
                 for dx, dy in [(-1,-1), (-1,1), (1,-1), (1,1)]:
                     cv2.putText(
                         frame, subtitle_text,
                         (text_x + dx, text_y + dy),
-                        font, font_scale, (0,0,0), thickness + 1,
+                        font, font_scale, (0,0,0), thickness + 2.5,
                         cv2.LINE_AA
                     )
                 

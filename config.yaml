@@ -14,7 +14,7 @@ ollama:
   max_tokens: 500
   model: llama3.2
   preprompt: 'Generate an engaging, educational, and surprising topic for a 30-second
-    social media reel. Focus on science, technology, history, nature, space, or psychology.
+    social media reel. Focus on ww2 tanks, ww2 planes or ww2 ships
     Make it intriguing and shareable.
 
     '

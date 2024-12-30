@@ -77,7 +77,7 @@ class SubtitleGenerator:
                         subtitle_text, font, font_scale, thickness
                     )
                     text_x = (width - text_width) // 2
-                    text_y = height - 50  # 50 pixels from bottom
+                    text_y = height - 200  # 50 pixels from bottom
                     
                     # Draw text outline (black)
                     for dx, dy in [(-1,-1), (-1,1), (1,-1), (1,1)]:
