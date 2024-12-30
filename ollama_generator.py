@@ -21,18 +21,19 @@ class OllamaGenerator:
     def generate_script(self, topic):
         """Generate a concise, engaging script for the topic"""
         script_prompt = f"""
-        Create a concise, engaging 30-60 second script about this topic:
+        Generate ONLY the spoken script text for a 30-second educational video about this topic:
         {topic}
 
-        Guidelines:
-        - Write in a direct, informative, and captivating style
-        - Use clear, impactful language
-        - Start with a compelling fact or insight
-        - Maintain a conversational yet authoritative tone
+        Requirements:
+        - Provide ONLY the exact words to be spoken
+        - No stage directions, visual descriptions, or formatting
+        - Write in a clear, engaging, conversational tone
+        - Focus on delivering key information concisely
         - Aim for approximately 150-250 words
-        - Conclude with a memorable takeaway or insight
-        - Avoid cinematic directions or staging instructions
-        """
+        - Ensure the script can be read in about 30 seconds
+        - Use language that sounds natural when spoken aloud
+
+        Output ONLY the raw script text."""
         
         response = ollama.generate(
             model=self.config['ollama']['model'], 

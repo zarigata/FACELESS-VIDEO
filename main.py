@@ -1,6 +1,8 @@
 from ollama_generator import OllamaGenerator
 from tts_script import TTSConverter
 from video_script import VideoCompiler
+import os
+from subtitle_generator import add_subtitles_to_last_video
 
 def create_reel():
     # Initialize components
@@ -16,6 +18,13 @@ def create_reel():
     script = generator.generate_script(topic)
     print("\nGenerated Script:\n", script)
     
+    # Save script to file for subtitle generation
+    output_dir = 'j:/_____ PYTHON ______/FACELESS VIDEO/output'
+    os.makedirs(output_dir, exist_ok=True)
+    
+    with open(os.path.join(output_dir, 'reel_script.txt'), 'w') as f:
+        f.write(script)
+    
     # Convert script to speech
     audio_path, audio_duration = tts_converter.text_to_speech(script)
     print(f"\nAudio generated: {audio_path}")
@@ -24,6 +33,9 @@ def create_reel():
     # Compile video
     video_path = video_compiler.compile_video(audio_path)
     print(f"\nReel video created: {video_path}")
+    
+    # Add subtitles to the video
+    add_subtitles_to_last_video()
 
 def main():
     create_reel()
