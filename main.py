@@ -3,7 +3,6 @@ from tts_script import TTSConverter
 from video_script import VideoCompiler
 from word_timestamp_generator import process_latest_video
 import os
-from subtitle_generator import add_subtitles_to_last_video
 
 def create_reel():
     # Initialize components
@@ -37,9 +36,6 @@ def create_reel():
     
     # Add AI-powered word-by-word subtitles
     process_latest_video()
-    
-    # Add subtitles to the video
-    add_subtitles_to_last_video()
 
 def main():
     create_reel()

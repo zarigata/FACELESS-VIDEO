@@ -125,7 +125,7 @@ class WordTimestampGenerator:
                     cv2.putText(
                         frame, subtitle_text,
                         (text_x + dx, text_y + dy),
-                        font, font_scale, (0,0,0), thickness + 2.5,
+                        font, font_scale, (0,0,0), thickness + 2,
                         cv2.LINE_AA
                     )
                 
